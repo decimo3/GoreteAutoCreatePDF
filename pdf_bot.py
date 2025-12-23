@@ -128,6 +128,7 @@ if '__main__' == __name__:
     for item in os.listdir(directory):
         current = os.path.join(directory, item)
         if not os.path.isdir(current):
+            log.error('%s não é uma pasta! Pulando...', current)
             continue
         create_pdf(directory, item)
     log.info('Programa finalizado! Digite qualquer tecla para sair.')
