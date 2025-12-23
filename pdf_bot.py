@@ -83,7 +83,7 @@ def create_pdf(base_folder: str, folder: str) -> None:
     ''' Function to create PDFs to each folder '''
     fullpath = os.path.join(base_folder, folder)
     log.info('entrando na pasta %s...', fullpath)
-    filepath = os.path.join(fullpath, folder + '.pdf')
+    filepath = os.path.join(base_folder, folder + '.pdf')
     pdf_writer = canvas.Canvas(filepath)
     for item in os.listdir(fullpath):
         current = os.path.join(fullpath, item)
