@@ -65,7 +65,7 @@ def normalize_image(img: Image.Image) -> ImageReader:
 
     # Escala para caber no A4
     width, height = img.size
-    scale = min(IMAGE_MAX_WIDTH / width, IMAGE_MAX_HEIGHT / height, 1)
+    scale = min(IMAGE_MAX_WIDTH / width, IMAGE_MAX_HEIGHT / height)
     width = int(width * scale)
     height = int(height * scale)
     img = img.resize((width, height), Image.Resampling.LANCZOS)
