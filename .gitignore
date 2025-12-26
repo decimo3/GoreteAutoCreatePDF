@@ -3,4 +3,5 @@ dist
 build
 
 *.log
+*.log.*
 *.spec
