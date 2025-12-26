@@ -76,6 +76,7 @@ def normalize_image(img: Image.Image) -> ImageReader:
         buffer,
         format="JPEG",
         quality=IMAGE_DEFAULT_QUALITY,
+        subsampling=0,
         optimize=True,
         progressive=True
     )
