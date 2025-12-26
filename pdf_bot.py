@@ -21,11 +21,14 @@ from PIL import Image
 LOGGING_MAX_BACKUP = 7
 BANNER_MAX_LENGHT = 100
 BANNER_DEFAULT_CHAR = '#'
-PAGE_MARGIN = 24
+IMAGE_DPI = 200
+POINTS_PER_INCH = 72
+A4_WIDTH_INCH = 8.27
+A4_HEIGHT_INCH = 11.69
 IMAGE_DEFAULT_QUALITY = 75
 PAGE_WIDTH, PAGE_HEIGHT = A4
-IMAGE_MAX_WIDTH = PAGE_WIDTH - 2 * PAGE_MARGIN
-IMAGE_MAX_HEIGHT = PAGE_HEIGHT - 2 * PAGE_MARGIN
+IMAGE_MAX_WIDTH = int(A4_WIDTH_INCH * IMAGE_DPI)
+IMAGE_MAX_HEIGHT = int(A4_HEIGHT_INCH * IMAGE_DPI)
 #endregion
 
 logging.basicConfig(
@@ -102,6 +105,9 @@ def create_pdf(base_folder: str, folder: str) -> None:
                 image = image.transpose(Image.Transpose.ROTATE_90)
             image = normalize_image(image)
             width, height = image.getSize() # reasign values due change
+            # Transform pixels to points
+            width = width * POINTS_PER_INCH / IMAGE_DPI
+            height = height * POINTS_PER_INCH / IMAGE_DPI
             # set page size to A$ default size
             pdf_writer.setPageSize(A4)
             pdf_writer.drawImage(
